@@ -1,0 +1,43 @@
+{
+  "browser_action": {
+    "default_icon": "sd.png"
+  },
+  "sidebar_action": {
+    "default_icon": "sd.png",
+    "default_panel": "popup/sidebar.html",
+    "open_at_install": false
+  },
+  "description": "Share files between devices in your local network",
+  "homepage_url": "https://github.com/ueen/SnapdropFirefoxAddon",
+  "manifest_version": 2,
+  "name": "Snapdrop Browser Extension",
+  "version": "1.9.7",
+  "options_ui": {
+    "page": "options/options.html"
+  },
+  "content_security_policy": "script-src 'self' https://snapdrop.net; object-src 'self'",
+  "permissions": [
+    "notifications",
+    "clipboardWrite",
+    "downloads",
+    "storage",
+    "tabs",
+    "<all_urls>"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{3af274cf-1fa9-47bc-9167-1f2251fee500}"
+    }
+  },
+  "background": {
+     "scripts": [
+       "browser-polyfill.js",
+       "snapdrop/network.js",
+       "snapdrop/connect.js",
+       "background.js"
+     ]
+  },
+  "icons": {
+    "128": "sd.png"
+  }
+}
