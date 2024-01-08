@@ -49,4 +49,4 @@ I also recommend using this great app: <a href="https://github.com/fm-sys/snapdr
 Chrome Support thanks to <a href="https://github.com/mozilla/webextension-polyfill" target="_blank">WebExtension browser API Polyfill by Mozilla</a>
 
 ## License
-<a href='https://github.com/ueen/SnapdropFirefoxAddon/blob/main/LICENSE'>GNU General Public License v3.0</a>
+<a href='https://github.com/ueen/PairdropWebExtension/blob/main/LICENSE'>GNU General Public License v3.0</a>
