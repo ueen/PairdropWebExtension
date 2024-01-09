@@ -1,5 +1,5 @@
 {
-  "browser_action": {
+  "action": {
     "default_icon": "sd.png"
   },
   "sidebar_action": {
@@ -8,21 +8,24 @@
     "open_at_install": false
   },
   "description": "Share files between devices in your local network",
-  "homepage_url": "https://github.com/ueen/SnapdropFirefoxAddon",
-  "manifest_version": 2,
-  "name": "Snapdrop Browser Extension",
-  "version": "1.9.7",
+  "homepage_url": "https://github.com/ueen/PairdropWebExtension",
+  "manifest_version": 3,
+  "name": "Pairdrop Web Extension",
+  "version": "0.1",
   "options_ui": {
     "page": "options/options.html"
   },
-  "content_security_policy": "script-src 'self' https://snapdrop.net; object-src 'self'",
+  "content_security_policy": {"extension_pages": "script-src 'self' https://pairdrop.net; object-src 'self'"},
   "permissions": [
     "notifications",
     "clipboardWrite",
     "downloads",
     "storage",
-    "tabs",
-    "<all_urls>"
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://pairdrop.net/"
   ],
   "browser_specific_settings": {
     "gecko": {
@@ -33,7 +36,7 @@
      "scripts": [
        "browser-polyfill.js",
        "snapdrop/network.js",
-       "snapdrop/connect.js",
+       "snapdrop/main.js",
        "background.js"
      ]
   },

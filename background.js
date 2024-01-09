@@ -1,6 +1,6 @@
-let snapdrop;
+let pairdrop;
 
-let sdURL = "https://snapdrop.net";
+let pdURL = "https://pairdrop.net";
 
 const popupModes = {
   Winpop: 'winpop',
@@ -10,8 +10,8 @@ const popupModes = {
 
 let popupMode;
 
-browser.storage.sync.get({SdAmode:"", Backg:false, Servr:"https://snapdrop.net"}).then(function (result) {
-	sdURL = result.Servr;
+browser.storage.sync.get({SdAmode:"", Backg:false, Servr:"https://pairdrop.net"}).then(function (result) {
+	pdURL = result.Servr;
 
 	popupMode = result.SdAmode;
 	switch (result.SdAmode) {
@@ -20,16 +20,16 @@ browser.storage.sync.get({SdAmode:"", Backg:false, Servr:"https://snapdrop.net"}
 			sidebarInit();
 		case popupModes.Winpop:
 		case popupModes.Tab:
-			browser.browserAction.onClicked.addListener(browserActionClick);
+			browser.action.onClicked.addListener(actionClick);
 			break;
 		default: //classic popup
-			browser.browserAction.setPopup({popup: 'popup/popup.html'});
+			browser.action.setPopup({popup: 'popup/popup.html'});
 			popupListener();
 			break;
 	}
 
 	if (result.Backg) {
-		snapdrop = new Snapdrop(sdURL.split("//")[1]);
+		pairdrop = new Pairdrop(pdURL.split("//")[1]);
 		browser.tabs.onUpdated.addListener(handleUpdated);
 		browser.tabs.onRemoved.addListener(handleRemoved);
 	}
@@ -69,7 +69,7 @@ function sidebarListener() {
 function sidebarInit() {
 	try {
   	browser.contentScripts.register({
-		    matches: [sdURL+'/*'],
+		    matches: [pdURL+'/*'],
 		    js: [{file: "browser-polyfill.js"}, {file: "popup/sidebar.js"}],
 		    allFrames : true,
 		    runAt: "document_idle"
@@ -80,23 +80,23 @@ function sidebarInit() {
 }
 
 
-function browserActionClick() { //only if not 'classic' Popup Mode
+function actionClick() { //only if not 'classic' Popup Mode
 	if (popupMode == popupModes.Sidebar) {
 		browser.sidebarAction.open(); //requieres direct user input handle
 	} else {
-		browser.tabs.query({url: "*://*."+sdURL.split("//")[1]+"/*"}).then( tabs => {
+		browser.tabs.query({url: "*://*."+pdURL.split("//")[1]+"/*"}).then( tabs => {
 			if (tabs.length <= 0) {
 				switch (popupMode) {
 					case popupModes.Winpop:
 						browser.windows.create({
-						    url: sdURL,
+						    url: pdURL,
 						    type: "popup",
 						    height: 480,
 						    width: 360
 						});
 						break;
 					case popupModes.Tab:
-						browser.tabs.create({url: sdURL});
+						browser.tabs.create({url: pdURL});
 						break;
 					case popupModes.Sidebar:
 						
@@ -113,11 +113,11 @@ function browserActionClick() { //only if not 'classic' Popup Mode
 }
 
 
-//handle snapdrop opened in tab 
+//handle pairdrop opened in tab 
 var sdTab;
 
 function handleUpdated(tabId, changeInfo, tabInfo) {
-  if (tabInfo.url.includes(sdURL.split("//")[1])) {
+  if (tabInfo.url.includes(pdURL.split("//")[1])) {
   		stop();
   		sdTab = tabId;
   } else if (tabId == sdTab) {
@@ -132,14 +132,14 @@ function handleRemoved(tabId, removeInfo) {
 }
 
 function restart() {
-	if (snapdrop) {
-		snapdrop.server.restart();
-  		console.log('background snapdrop restarted');
+	if (pairdrop) {
+		pairdrop.server.restart();
+  		console.log('background pairdrop restarted');
 	}
 }
 function stop() {
-	if (snapdrop) {
-		snapdrop.server.stop(); 
-	  	console.log('background snapdrop stopped'); 
+	if (pairdrop) {
+		pairdrop.server.stop(); 
+	  	console.log('background pairdrop stopped'); 
 	}
 }

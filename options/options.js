@@ -28,7 +28,7 @@ function restoreOptions() {
   function onError(error) {
     console.log(`Error: ${error}`);
   }
-  let getting = browser.storage.sync.get({SdAmode:"popup", Backg:false, Servr:"https://snapdrop.net"});
+  let getting = browser.storage.sync.get({SdAmode:"popup", Backg:false, Servr:"https://pairdrop.net"});
   getting.then(setCurrentChoice, onError);
 }
 
@@ -37,6 +37,6 @@ document.querySelector("#modes").addEventListener("change", saveOptions);
 document.querySelector("#backg").addEventListener("change", saveOptions);
 document.querySelector("#servrsave").addEventListener("click", saveOptions);
 document.querySelector("#servrreset").addEventListener("click", function () {
-  document.querySelector("#servr").value = "https://snapdrop.net";
+  document.querySelector("#servr").value = "https://pairdrop.net";
   saveOptions();
 });
