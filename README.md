@@ -1,6 +1,10 @@
 # Pairdrop Web Extension (Addon) - BETA
 Share files between devices in your local network.
 
+##TODO
+- fix baclkground service
+- make settings nicer
+
 ## Description
 By default, this addon just displays a <b>popup</b> with the <a href="https://pairdrop.net/" target="_blank">Pairdrop</a> website so you can start recieving files and texts easily. In the popup the URL of the current tab is posted to the Message Dialog (right click).
 You can change the mode in the addons settings either to 'Popup in new window' or 'Open Tab instead' or 'Open in Sidebar'.
