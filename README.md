@@ -4,6 +4,7 @@ Share files between devices in your local network.
 ##TODO
 - fix baclkground service
 - make settings nicer
+- figure out manifest content_security_policy
 
 ## Description
 By default, this addon just displays a <b>popup</b> with the <a href="https://pairdrop.net/" target="_blank">Pairdrop</a> website so you can start recieving files and texts easily. In the popup the URL of the current tab is posted to the Message Dialog (right click).
